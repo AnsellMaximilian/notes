@@ -44,7 +44,12 @@ export default function App() {
 
     // Add
     const add = (noteObj) => {
-        db.collection('notes').add(noteObj).then(console.log('success'))
+        db.collection('notes').add(noteObj).then(console.log('success'));
+    }
+
+    // Update
+    const update = (noteObj, id) => {
+        db.collection('notes').doc(id).set(noteObj).then(console.log('updated successfully'));
     }
 
     // Delete 
@@ -57,7 +62,7 @@ export default function App() {
             <Header />
             <List notes={notes} scroll={scroll} openForm={openForm} openDetail={openDetail} remove={remove}/>
             {isFormOpen ? <Form close={closeForm} add={add}/> : null}
-            {isDetailOpen ? <Detail note={detailItem} close={closeDetail} remove={remove}/> : null}
+            {isDetailOpen ? <Detail note={detailItem} close={closeDetail} remove={remove} update={update}/> : null}
         </div>
     )
 }
