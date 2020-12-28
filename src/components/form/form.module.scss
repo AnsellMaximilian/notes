@@ -1,0 +1,127 @@
+@use '../../styles/base';
+
+.obscurer {
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.452);
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+}
+
+.form {
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    background-color: white;
+    animation: slide-up 0.5s;
+    font-size: 1.25rem;
+}
+
+.header {
+    background-color: base.$accent-color;
+    color: base.$accent-font-color;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 20px;
+    position: relative;
+    // height: 4.5rem;
+}
+
+.header > h1 {
+    height: 50px;
+    line-height: 50px;
+}
+
+.description {
+    padding: 20px;
+    min-height: 300px;
+    white-space: pre-wrap;
+}
+
+.delete {
+    width: 40px;
+    height: 100%;
+    color: white;
+    background-color: red;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.delete:hover {
+    background-color: rgb(224, 0, 0);
+}
+
+.tools {
+    background-color: base.$bg-color;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    border-top: 2.5px solid base.$border-color;
+}
+
+.tags {
+    padding: 10px;
+    height: auto;
+}
+
+.tags__item {
+    padding: 5px;
+    background-color: base.$bg-color;
+    text-align: center;
+    margin-right: 5px;
+    border-radius: 15px;
+    border: 2.5px solid base.$border-color;
+    display: inline-block;
+    cursor: pointer;
+    height: 35px;
+}
+
+.tags__item:hover {
+    background-color: base.$highlight;
+}
+
+.add {
+    width: 35px; height: 35px;
+    border-radius: 50%;
+}
+
+.close {
+    background-color: transparent;
+    color: base.$accent-font-color;
+    position: absolute;
+    font-size: 2rem;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: border 0.25s, right 0.25s;
+    box-sizing: content-box;
+}
+
+.close:hover {
+    border: 2.5px solid base.$accent-font-color;
+    right: 17.5px;
+}
+
+@keyframes slide-up {
+    from{top: 100%}
+    to {top: 50%}
+}
+
+.input {
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    padding: 0;
+    height: 50px;
+    width: 75%;
+}

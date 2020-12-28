@@ -1,0 +1,9 @@
+@use 'base';
+
+body {
+    font-family: base.$main-font;
+}
+
+body {
+    background-color: base.$highlight;
+}

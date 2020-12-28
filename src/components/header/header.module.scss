@@ -1,0 +1,16 @@
+@use '../../styles/base';
+
+.header {
+    background-color: base.$accent-color;
+    color: base.$accent-font-color;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+}
