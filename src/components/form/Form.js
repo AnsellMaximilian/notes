@@ -2,12 +2,15 @@ import React, {useState} from 'react'
 
 import styles from './form.module.scss';
 
-export default function Form({close, add}) {
+export default function Form({close, add, tags}) {
     const [isTitleInputOpen, setIsTitleInputOpen] = useState(false);
     const [isDescriptionInputOpen, setIsDescriptionInputOpen] = useState(false);
+    const [isTagsInputOpen, setIsTagsInputOpen] = useState(false)
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+
+    const [noteTags, setNoteTags] = useState([]);
 
     const handleChange = (e) => {
         if(e.target.name === 'title'){
@@ -18,7 +21,7 @@ export default function Form({close, add}) {
     }
 
     const closeAndSave = () => {
-        if(title && description) add({title, description});
+        if(title && description) add({title, description, tags: noteTags});
         close();
     }
 
@@ -57,8 +60,41 @@ export default function Form({close, add}) {
                 </div>
                 <div className={styles.tools}>
                     <div className={styles.tags}>
-                        
-                        <span className={`fas fa-plus ${styles.tags__item} ${styles.add}`}></span>
+                        {noteTags?.map(noteTag => {
+                            // Getting the tag name
+                            const [tagName] = tags.filter(tag => tag.id === noteTag).map(tag => tag.name);
+                            return <span className={styles.tags__item}>{tagName}</span>
+                        })}
+                        <span className={`fas fa-plus ${styles.tags__item} ${styles.add}`} onClick={() => setIsTagsInputOpen(status => !status)}>
+                            {
+                                isTagsInputOpen ?
+                                <div className={styles['tags-input']} onClick={(e) => e.stopPropagation()} onMouseLeave={() => setIsTagsInputOpen(false)}>
+                                    <div className={styles['tags-input__items']}>
+                                        {
+                                            tags.map(tag => {
+                                                return (
+                                                    <div key={tag.id} className={styles['tags-input__tag']}>
+                                                        <label>
+                                                            <input type="checkbox" checked={noteTags?.includes(tag.id)} onChange={(e) => {
+                                                                if(e.target.checked){
+                                                                    setNoteTags(tags => [...tags, tag.id])
+                                                                } else{
+                                                                    setNoteTags(tags => tags.filter(filterTag => filterTag !== tag.id));
+                                                                } 
+                                                            }} />
+                                                            {tag.name}
+                                                        </label>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    <div className={styles['tag-input']}>
+
+                                    </div>
+                                </div> : null
+                            }
+                        </span>
                     </div>
                     <button className={`fas fa-trash ${styles.delete}`}></button>
                 </div>

@@ -59,7 +59,7 @@ export default function App() {
 
     // Update
     const update = (noteObj, id) => {
-        db.collection('notes').doc(id).set(noteObj).then(console.log('updated successfully'));
+        db.collection('notes').doc(id).update(noteObj).then(console.log('updated successfully'));
     }
 
     // Delete 
@@ -78,8 +78,8 @@ export default function App() {
                 openDetail={openDetail} 
                 remove={remove}
             />
-            {isFormOpen ? <Form close={closeForm} add={add}/> : null}
-            {isDetailOpen ? <Detail note={detailItem} close={closeDetail} remove={remove} update={update}/> : null}
+            {isFormOpen ? <Form close={closeForm} add={add} tags={tags}/> : null}
+            {isDetailOpen ? <Detail note={detailItem} tags={tags} close={closeDetail} remove={remove} update={update}/> : null}
         </div>
     )
 }

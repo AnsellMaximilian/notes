@@ -2,13 +2,16 @@ import React, {useState} from 'react'
 
 import styles from './detail.module.scss';
 
-export default function Detail({note, close, remove, update}) {
+export default function Detail({note, tags, close, remove, update}) {
     // State for updating note
     const [isTitleInputOpen, setIsTitleInputOpen] = useState(false);
     const [isDescriptionInputOpen, setIsDescriptionInputOpen] = useState(false);
+    const [isTagsInputOpen, setIsTagsInputOpen] = useState(false)
 
     const [title, setTitle] = useState(note.title);
     const [description, setDescription] = useState(note.description);
+
+    const [noteTags, setNoteTags] = useState(note.tags || []);
 
     // When user clicks trash button -- closes and deletes.
     const removeAndClose = () => {
@@ -25,7 +28,7 @@ export default function Detail({note, close, remove, update}) {
     }
 
     const closeAndUpdate = () => {
-        if(title && description) update({title, description}, note.id);
+        if(title && description) update({title, description, tags: noteTags}, note.id);
         close();
     }
 
@@ -65,8 +68,41 @@ export default function Detail({note, close, remove, update}) {
                 </div>
                 <div className={styles.tools}>
                     <div className={styles.tags}>
-                        {note.tags?.map(tag => <span className={styles.tags__item}>{tag}</span>)}
-                        <span className={`fas fa-plus ${styles.tags__item} ${styles.add}`}></span>
+                        {noteTags?.map(noteTag => {
+                            // Getting the tag name
+                            const [tagName] = tags.filter(tag => tag.id === noteTag).map(tag => tag.name);
+                            return <span className={styles.tags__item}>{tagName}</span>
+                        })}
+                        <span className={`fas fa-plus ${styles.tags__item} ${styles.add}`} onClick={() => setIsTagsInputOpen(status => !status)}>
+                            {
+                                isTagsInputOpen ?
+                                <div className={styles['tags-input']} onClick={(e) => e.stopPropagation()} onMouseLeave={() => setIsTagsInputOpen(false)}>
+                                    <div className={styles['tags-input__items']}>
+                                        {
+                                            tags.map(tag => {
+                                                return (
+                                                    <div key={tag.id} className={styles['tags-input__tag']}>
+                                                        <label>
+                                                            <input type="checkbox" checked={noteTags?.includes(tag.id)} onChange={(e) => {
+                                                                if(e.target.checked){
+                                                                    setNoteTags(tags => [...tags, tag.id])
+                                                                } else{
+                                                                    setNoteTags(tags => tags.filter(filterTag => filterTag !== tag.id));
+                                                                } 
+                                                            }} />
+                                                            {tag.name}
+                                                        </label>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    <div className={styles['tag-input']}>
+
+                                    </div>
+                                </div> : null
+                            }
+                        </span>
                     </div>
                     <button className={`fas fa-trash ${styles.delete}`} onClick={removeAndClose}></button>
                 </div>

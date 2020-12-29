@@ -126,3 +126,45 @@
     height: 50px;
     width: 75%;
 }
+
+// tags
+
+.tags-input::before {
+    content: "";
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    background-color: transparent;
+}
+
+.tags-input {
+    position: absolute;
+    border: 2.5px solid base.$border-color;
+    bottom: 50px;
+    left: 10px;
+    transform: translate(0, 0);
+    box-shadow: base.$box-shadow;
+    background-color: base.$bg-color;
+    padding: 5px;
+    font-size: 1rem;
+    text-align: left;
+    width: 90%;
+    font-weight: normal;
+    font-family: base.$main-font;
+}
+// TAGS
+.tags-input__items {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 150px;
+    max-height: 250px;
+}
+
+.tags-input__tag > label {
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+}
