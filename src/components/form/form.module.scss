@@ -75,6 +75,7 @@
     display: inline-block;
     cursor: pointer;
     height: 35px;
+    transition: background-color 0.5s;
 }
 
 .tags__item:hover {

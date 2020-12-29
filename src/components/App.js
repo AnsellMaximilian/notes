@@ -22,6 +22,15 @@ export default function App() {
             setScroll(window.scrollY);
         })
 
+        db.collection('tags').onSnapshot(snapshot => {
+            const tags = snapshot.docs.map(doc => {
+                const tag = doc.data();
+                tag.id = doc.id;
+                return tag;
+            });
+            setTags(tags);
+        })
+
         db.collection('notes').onSnapshot(snapshot => {
             const notes = snapshot.docs.map(doc => {
                 const note = doc.data();
@@ -63,6 +72,7 @@ export default function App() {
             <Header />
             <List 
                 notes={notes}
+                tags={tags}
                 scroll={scroll} 
                 openForm={openForm} 
                 openDetail={openDetail} 

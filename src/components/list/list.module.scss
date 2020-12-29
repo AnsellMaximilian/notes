@@ -32,10 +32,12 @@
     border: 2.5px solid base.$border-color;
     transition: background-color 0.5s;
     display: inline-block;
+    position: relative;
 }
 
 .filter__item--on {
     border: 2.5px solid base.$accent-color;
+    // color: base.$accent-color;
 }
 
 .search {
@@ -110,4 +112,41 @@
 @keyframes grow {
     from {width: 0}
     to {width: 200px;}
+}
+.tags::before {
+    content: "";
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    top: -5px;
+    left: 0;
+    background-color: transparent;
+}
+
+.tags {
+    position: absolute;
+    border: 2.5px solid base.$border-color;
+    bottom: -5px;
+    left: 0;
+    transform: translate(0, 100%);
+    box-shadow: base.$box-shadow;
+    background-color: base.$bg-color;
+    padding: 5px;
+    font-size: 1rem;
+    text-align: left;
+    min-width: 250px;
+}
+
+.tags__items {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 150px;
+    max-width: 250px;
+}
+
+.tag > label {
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
 }
