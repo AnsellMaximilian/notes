@@ -14,6 +14,7 @@ export default function App() {
     const [detailItem, setDetailItem] = useState(null);
 
     const [notes, setNotes] = useState([]);
+    const [tags, setTags] = useState([]);
 
     // COMPONENT DID MOUNT
     useEffect(async () => {
@@ -60,7 +61,13 @@ export default function App() {
     return (
         <div className="app">
             <Header />
-            <List notes={notes} scroll={scroll} openForm={openForm} openDetail={openDetail} remove={remove}/>
+            <List 
+                notes={notes}
+                scroll={scroll} 
+                openForm={openForm} 
+                openDetail={openDetail} 
+                remove={remove}
+            />
             {isFormOpen ? <Form close={closeForm} add={add}/> : null}
             {isDetailOpen ? <Detail note={detailItem} close={closeDetail} remove={remove} update={update}/> : null}
         </div>
