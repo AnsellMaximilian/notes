@@ -47,7 +47,7 @@ export default function App() {
                     return note;
                 });
                 setNotes(notes);
-            }, error => listener())
+            }, error => listener()) //Unsubscribing if there's an error
         }else {setNotes([])}
     }, [user])
 
