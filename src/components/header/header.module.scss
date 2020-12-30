@@ -14,3 +14,19 @@
     font-size: 2rem;
     font-weight: bold;
 }
+
+.auth-links {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.auth-links > li {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.auth-links > li:hover {
+    text-decoration: underline;
+}

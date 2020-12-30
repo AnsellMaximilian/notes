@@ -1,0 +1,96 @@
+@use '../../styles/base';
+
+.obscurer {
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.452);
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+}
+
+.form-container {
+    position: absolute;
+    width: 500px;
+    max-width: 90%;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    background-color: white;
+    animation: slide-up 0.5s;
+    font-size: 1.25rem;
+}
+
+.header {
+    background-color: base.$accent-color;
+    color: base.$accent-font-color;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 20px;
+    position: relative;
+    // height: 4.5rem;
+}
+
+.header > h1 {
+    height: 50px;
+    line-height: 50px;
+}
+
+.close {
+    background-color: transparent;
+    color: base.$accent-font-color;
+    position: absolute;
+    font-size: 2rem;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: border 0.25s, right 0.25s;
+    box-sizing: content-box;
+}
+
+.close:hover {
+    border: 2.5px solid base.$accent-font-color;
+    right: 17.5px;
+}
+
+.form {
+    padding: 15px;
+}
+
+.form > input {
+    width: 80%;
+    display: block;
+    outline: none;
+    margin: 15px auto;
+    margin-top: 0;
+    font-size: 1.25rem;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1.5px solid base.$border-color;
+}
+
+.form > button[type="submit"] {
+    border-radius: 10px;
+    background-color: base.$accent-color;
+    font-size: 1.25rem;
+    outline: none;
+    border: none;
+    color: base.$accent-font-color;
+    padding: 10px 20px;
+    min-width: 50px;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.form > button[type="submit"]:hover {
+    transform: scale(1.1);
+}
+
+@keyframes slide-up {
+    from{top: 100%}
+    to {top: 50%}
+}

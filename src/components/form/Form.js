@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 import styles from './form.module.scss';
 
-export default function Form({close, add, tags}) {
+export default function Form({close, add, tags, user}) {
     const [isTitleInputOpen, setIsTitleInputOpen] = useState(false);
     const [isDescriptionInputOpen, setIsDescriptionInputOpen] = useState(false);
     const [isTagsInputOpen, setIsTagsInputOpen] = useState(false)
@@ -21,7 +21,7 @@ export default function Form({close, add, tags}) {
     }
 
     const closeAndSave = () => {
-        if(title && description) add({title, description, tags: noteTags});
+        if(title && description) add({title, description, tags: noteTags, user: user.uid});
         close();
     }
 
