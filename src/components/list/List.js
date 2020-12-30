@@ -18,7 +18,7 @@ export default function List({notes, tags, scroll, openForm, openDetail, remove}
         setFilteredNotes(filteredNotes => {
             return notes.filter(note => {
                 // if search is empty or tag filter is empty, dont apply respective filter
-                const searchFilter = searchTerm ? note.title.includes(searchTerm) : true;
+                const searchFilter = searchTerm ? note.title.toLowerCase().includes(searchTerm.toLowerCase()) : true;
                 const tagsFilter = filterTags.length > 0 ? note.tags?.some(tag => filterTags.includes(tag)) : true;
                 return searchFilter && tagsFilter;
             })
