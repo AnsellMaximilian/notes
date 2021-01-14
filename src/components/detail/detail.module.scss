@@ -4,7 +4,8 @@
     width: 100%;
     background-color: rgba(128, 128, 128, 0.452);
     position: fixed;
-    top: 0; left: 0; bottom: 0;
+    height: 100%;
+    top: 0; left: 0;
 }
 
 .detail {
@@ -36,6 +37,7 @@
     padding: 20px;
     height: 300px;
     white-space: pre-wrap;
+    overflow-y: auto;
 }
 
 .delete {
